@@ -1,7 +1,9 @@
 package com.nguyen.goldr_3.controller;
 
+import com.nguyen.goldr_3.model.Account;
 import com.nguyen.goldr_3.model.Category;
 import com.nguyen.goldr_3.model.User;
+import com.nguyen.goldr_3.services.AccountServices;
 import com.nguyen.goldr_3.services.CategoryServices;
 import com.nguyen.goldr_3.services.UserServices;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,8 @@ public class UserController {
     private UserServices userServices;
     @Autowired
     private CategoryServices categoryServices;
+    @Autowired
+    private AccountServices accountServices;
 
 //    fxn to get the user's age
     public int calculateUserAge(User _user) {
@@ -57,11 +61,15 @@ public class UserController {
     @GetMapping("/categories-amounts")
     public String userCategory(@PathVariable("userId") Integer userId, Model model) {
 
-//        get the user's assets for the delete buttons
+//        get the user's categories for the delete buttons
         List<Category> userCategories = categoryServices.getCategoriesByUserId(userId);
+
+//        get the user's accounts for the create category form
+        List<Account> userAccounts = accountServices.getAccountsByUserId(userId);
 
         model.addAttribute("category", new Category());
         model.addAttribute("userCategories", userCategories);
+        model.addAttribute("userAccounts", userAccounts);
 
         return "category";
     }

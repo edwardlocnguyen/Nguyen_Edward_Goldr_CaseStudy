@@ -65,13 +65,11 @@
                     <div class="mb-3">
                         <p>Manage Categories</p>
                     </div>
-                    <div th:text="${userId}"></div>
                     <div class="col-auto">
                         <table id="assets_list_table" class="table table-light table-striped table-hover">
                             <tbody>
                             <tr th:each="category : ${userCategories}">
                                 <td th:text="${category.name}"></td>
-                                <div th:text="${category.id}"></div>
                                 <td>
                                     <form th:action="@{/users/{userId}/categories/{categoryId}(categoryId=${category.id})}"
                                           method="POST">
@@ -90,22 +88,19 @@
         <div class="col">
             <div class="card text-bg-dark mb-3 border-light h-100">
                 <div class="card-body">
-                    <!-- 					{userId} in action gets its value from input value with name="userId" -->
-                    <!--                    <form method="POST" th:object="${asset}" id="assetForm"-->
-                    <!--                          th:action="@{/users/${userId}/assets/post(userId=${id})}">-->
-                    <!--                        <div class="mb-3">-->
-                    <!--                            <input type="hidden" id="userIdAsset" name="userId"-->
-                    <!--                                   th:value="${id}"/>-->
-                    <!--                            <label for="name" class="form-label">Create New Asset</label>-->
-                    <!--                            <input type="text" class="form-control" id="name"-->
-                    <!--                                   name="name" th:field="*{name}" placeholder="Asset Name">-->
-                    <!--                        </div>-->
-                    <!--                        <div class="col-auto">-->
-                    <!--                            <button type="submit" value="Create"-->
-                    <!--                                    class="btn btn-primary mb-3">Create-->
-                    <!--                            </button>-->
-                    <!--                        </div>-->
-                    <!--                    </form>-->
+                    <!--                    {userId} in th:action gets its value from th:value with name="userId"-->
+                    <form method="POST" th:object="${category}" id="assetForm"
+                          th:action="@{/users/{userId}/categories(userId=${userId})}">
+                        <div class="mb-3">
+                            <input type="hidden" id="userId" name="userId" th:value="${userId}"/>
+                            <label for="name" class="form-label">Create New Asset</label>
+                            <input type="text" class="form-control" id="name" name="name" th:field="*{name}"
+                                   placeholder="Category Name">
+                        </div>
+                        <div class="col-auto">
+                            <button type="submit" value="Create" class="btn btn-primary mb-3">Create</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
