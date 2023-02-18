@@ -4,10 +4,7 @@ import com.nguyen.goldr_3.model.Account;
 import com.nguyen.goldr_3.services.AccountServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/users/{userId}/accounts")
@@ -21,4 +18,11 @@ public class AccountController {
         accountServices.addAccount(userId, account);
         return "redirect:/users/" + userId + "/accounts-amounts";
     }
+
+    @DeleteMapping("/{accountId}")
+    public String deleteAccount(@RequestParam("userId") Integer userId, @PathVariable("accountId") Integer accountId) {
+        accountServices.deleteAccount(accountId);
+        return "redirect:/users/" + userId + "/accounts-amounts";
+    }
+
 }
