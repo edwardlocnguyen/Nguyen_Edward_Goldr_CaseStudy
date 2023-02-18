@@ -1,10 +1,12 @@
 package com.nguyen.goldr_3.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.annotation.Nonnull;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table
@@ -13,7 +15,7 @@ public class User implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
     @Column(unique = true)
     @Nonnull
@@ -25,6 +27,18 @@ public class User implements Serializable {
     private LocalDate dob;
     private Integer creditScore;
 
+    //  mappedBy creates the join column in the target table
+//	cascade ALL deletes all child accounts if the parent user is deleted
+//	fetch type is defaulted to LAZY, and child Accounts are not loaded along with the parent User
+//		update: needed to change to LAZY to delete accounts
+    @JsonManagedReference
+    @OneToMany(mappedBy = "user", targetEntity = Account.class, cascade = CascadeType.ALL)
+    private List<Account> accounts;
+
+//    @JsonManagedReference
+//    @OneToMany(mappedBy = "user", targetEntity = Category.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//    private List<Category> category;
+
     public User() {
         this.email = "";
         this.password = "";
@@ -33,16 +47,28 @@ public class User implements Serializable {
         this.occupation = "";
         this.dob = null;
         this.creditScore = 0;
-//        this.assets = null;
-//        this.accounts = null;
+        this.accounts = null;
+//        this.category = null;
 //        this.txns = null;
     }
 
-    public Long getId() {
+    public User(int id, String email, String password, String firstName, String lastName, String occupation, LocalDate dob, Integer creditScore, List<Account> accounts) {
+        this.id = id;
+        this.email = email;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.occupation = occupation;
+        this.dob = dob;
+        this.creditScore = creditScore;
+        this.accounts = accounts;
+    }
+
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -100,5 +126,28 @@ public class User implements Serializable {
 
     public void setCreditScore(Integer creditScore) {
         this.creditScore = creditScore;
+    }
+
+    public List<Account> getAccounts() {
+        return accounts;
+    }
+
+    public void setAccounts(List<Account> accounts) {
+        this.accounts = accounts;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", occupation='" + occupation + '\'' +
+                ", dob=" + dob +
+                ", creditScore=" + creditScore +
+                ", accounts=" + accounts +
+                '}';
     }
 }
