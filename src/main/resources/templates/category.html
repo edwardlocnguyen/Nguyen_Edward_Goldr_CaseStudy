@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/styles/asset.css}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Aboreto&family=Abril+Fatface&display=swap" rel="stylesheet">
+    <title>Categories and Amounts</title>
+</head>
+<body>
+<div th:replace="~{header :: header}"></div>
+<div id=title_div>
+    <h4>Categories Overview</h4>
+</div>
+<div id="table_div">
+    <div class="row row-cols-1 row-cols-md-1 g-4">
+        <div class="col">
+            <div id="each_card"
+                 class="card text-bg-dark mb-3 border-light h-100">
+                <!--                <table id="table"-->
+                <!--                       class="table table-light table-striped table-hover">-->
+                <!--                    <thead>-->
+                <!--                    <tr>-->
+                <!--                        <th scope="col">#</th>-->
+                <!--                        <th scope="col">Asset Name</th>-->
+                <!--                        <th scope="col">Allocation</th>-->
+                <!--                        <th scope="col">Amount</th>-->
+                <!--                    </tr>-->
+                <!--                    </thead>-->
+                <!--                    <tbody id="assets-table-body">-->
+                <!--                    &lt;!&ndash; Loop through the assetAmountsList and populate the table &ndash;&gt;-->
+                <!--                    <tr th:each="asset, i : ${assetAmountsAndTotal}">-->
+                <!--                        <td th:text="${i.index + 1}"></td>-->
+                <!--                        <td th:text="${asset.assetName}"></td>-->
+                <!--                        <td th:text="${asset.assetPercentage} + '%'"></td>-->
+                <!--                        <td th:text="'$' + ${asset.totalAmount}"></td>-->
+                <!--                    </tr>-->
+                <!--                    <tr>-->
+                <!--                        <td></td>-->
+                <!--                        <td></td>-->
+                <!--                        <td></td>-->
+                <!--                        <td></td>-->
+                <!--                    </tr>-->
+                <!--                    <tr>-->
+                <!--                        <td></td>-->
+                <!--                        <td>TOTAL</td>-->
+                <!--                        <td>100.00%</td>-->
+                <!--                        <td th:text="'$' + ${totalAmount}"></td>-->
+                <!--                    </tr>-->
+                <!--                    </tbody>-->
+                <!--                </table>-->
+                <div id="table_card-body" class="card-body"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="other_cards">
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+        <div class="col">
+            <div class="card text-bg-dark mb-3 border-light h-100">
+                <div id="assets_list_card_body" class="card-body">
+                    <div class="mb-3">
+                        <p>Manage Categories</p>
+                    </div>
+                    <div th:text="${userId}"></div>
+                    <div class="col-auto">
+                        <table id="assets_list_table" class="table table-light table-striped table-hover">
+                            <tbody>
+                            <tr th:each="category : ${userCategories}">
+                                <td th:text="${category.name}"></td>
+                                <div th:text="${category.id}"></div>
+                                <td>
+                                    <form th:action="@{/users/{userId}/categories/{categoryId}(categoryId=${category.id})}"
+                                          method="POST">
+                                        <input type="hidden" name="_method" value="DELETE"/>
+                                        <input type="hidden" name="userId" th:value="${userId}"/>
+                                        <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card text-bg-dark mb-3 border-light h-100">
+                <div class="card-body">
+                    <!-- 					{userId} in action gets its value from input value with name="userId" -->
+                    <!--                    <form method="POST" th:object="${asset}" id="assetForm"-->
+                    <!--                          th:action="@{/users/${userId}/assets/post(userId=${id})}">-->
+                    <!--                        <div class="mb-3">-->
+                    <!--                            <input type="hidden" id="userIdAsset" name="userId"-->
+                    <!--                                   th:value="${id}"/>-->
+                    <!--                            <label for="name" class="form-label">Create New Asset</label>-->
+                    <!--                            <input type="text" class="form-control" id="name"-->
+                    <!--                                   name="name" th:field="*{name}" placeholder="Asset Name">-->
+                    <!--                        </div>-->
+                    <!--                        <div class="col-auto">-->
+                    <!--                            <button type="submit" value="Create"-->
+                    <!--                                    class="btn btn-primary mb-3">Create-->
+                    <!--                            </button>-->
+                    <!--                        </div>-->
+                    <!--                    </form>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+</body>
+</html>

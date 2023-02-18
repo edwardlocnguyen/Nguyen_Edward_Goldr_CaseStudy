@@ -1,6 +1,8 @@
 package com.nguyen.goldr_3.controller;
 
+import com.nguyen.goldr_3.model.Category;
 import com.nguyen.goldr_3.model.User;
+import com.nguyen.goldr_3.services.CategoryServices;
 import com.nguyen.goldr_3.services.UserServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -17,6 +20,8 @@ public class UserController {
 
     @Autowired
     private UserServices userServices;
+    @Autowired
+    private CategoryServices categoryServices;
 
 //    fxn to get the user's age
     public int calculateUserAge(User _user) {
@@ -25,6 +30,7 @@ public class UserController {
         return age;
     }
 
+//    goes to user profile page
     @GetMapping("/profile")
     public String userProfile(@PathVariable("userId") Integer userId, Model model) {
 
@@ -40,10 +46,24 @@ public class UserController {
 
     }
 
+//    used in user profile page
     @PutMapping("/update")
     public String updateUser(@PathVariable("userId") Integer userId, @ModelAttribute User user) {
         userServices.updateUser(userId, user);
         return "redirect:/users/" + userId + "/profile";
+    }
+
+//    goes to user assets page
+    @GetMapping("/categories-amounts")
+    public String userCategory(@PathVariable("userId") Integer userId, Model model) {
+
+//        get the user's assets for the delete buttons
+        List<Category> userCategories = categoryServices.getCategoriesByUserId(userId);
+
+        model.addAttribute("category", new Category());
+        model.addAttribute("userCategories", userCategories);
+
+        return "category";
     }
 
 }

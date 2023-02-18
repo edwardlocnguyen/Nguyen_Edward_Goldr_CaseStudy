@@ -1,0 +1,32 @@
+@charset "UTF-8";
+
+body {
+    background-color: #6c6c6c;
+    color: white;
+}
+
+#title_div {
+    display: flex;
+    justify-content: center;
+    margin: 3% auto;
+    font-family: 'Aboreto', cursive;
+    font-family: 'Abril Fatface', cursive;
+}
+
+#table_div {
+    width: 60%;
+    margin: 1% auto 3% auto;
+}
+
+#table_card-body {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px !important;
+    margin: 0%;
+}
+
+#other_cards {
+    width: 60%;
+    margin: 0% auto 5% auto;
+}
