@@ -5,9 +5,7 @@ import com.nguyen.goldr_3.services.UserServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
@@ -28,7 +26,7 @@ public class UserController {
     }
 
     @GetMapping("/profile")
-    public String profile(@PathVariable("userId") Integer userId, Model model) {
+    public String userProfile(@PathVariable("userId") Integer userId, Model model) {
 
 //        get user data
         Optional<User> user = userServices.getUserById(userId);
@@ -36,11 +34,16 @@ public class UserController {
         int userAge = calculateUserAge(_user);
 
         model.addAttribute("user", _user);
-        model.addAttribute("userId", userId.toString());
         model.addAttribute("userAge", userAge);
 
         return "profile";
 
+    }
+
+    @PutMapping("/update")
+    public String updateUser(@PathVariable("userId") Integer userId, @ModelAttribute User user) {
+        userServices.updateUser(userId, user);
+        return "redirect:/users/" + userId + "/profile";
     }
 
 }

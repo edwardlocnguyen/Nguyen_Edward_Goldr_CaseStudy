@@ -26,7 +26,7 @@
         <img src="https://www.computerhope.com/jargon/g/guest-user.png"
              class="card-img-top" alt="profile-pic" id="profile-pic">
         <div id=form-div>
-            <form th:action="@{/users/{id}/update(id=${id})}" method="POST"
+            <form th:action="@{/users/{userId}/update(userId=${user.id})}" method="POST"
                   th:object="${user}">
                 <input type="hidden" name="_method" value="PUT"/>
                 <div class="form-group">
