@@ -57,19 +57,29 @@ public class UserController {
         return "redirect:/users/" + userId + "/profile";
     }
 
-//    goes to user assets page
+//    goes to user accounts page
+    @GetMapping("/accounts-amounts")
+    public String userAccount(@PathVariable("userId") Integer userId, Model model) {
+
+//        get the user's accounts for the delete buttons
+        List<Account> userAccounts = accountServices.getAccountsByUserId(userId);
+
+        model.addAttribute("account", new Account());
+        model.addAttribute("userAccounts", userAccounts);
+
+        return "account";
+    }
+
+
+//    goes to user categories page
     @GetMapping("/categories-amounts")
     public String userCategory(@PathVariable("userId") Integer userId, Model model) {
 
 //        get the user's categories for the delete buttons
         List<Category> userCategories = categoryServices.getCategoriesByUserId(userId);
 
-//        get the user's accounts for the create category form
-        List<Account> userAccounts = accountServices.getAccountsByUserId(userId);
-
         model.addAttribute("category", new Category());
         model.addAttribute("userCategories", userCategories);
-        model.addAttribute("userAccounts", userAccounts);
 
         return "category";
     }
