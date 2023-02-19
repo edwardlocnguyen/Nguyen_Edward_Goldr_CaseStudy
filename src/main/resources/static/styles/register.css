@@ -1,0 +1,10 @@
+@charset "UTF-8";
+
+body {
+    background-color: #6c6c6c;
+    color: white;
+}
+
+#form-field-div {
+    margin: 1% !important;
+}

@@ -1,0 +1,10 @@
+@charset "UTF-8";
+
+body {
+    background-color: #6c6c6c;
+    color: white;
+}
+
+#right-card-body {
+    padding: 5% !important;
+}
