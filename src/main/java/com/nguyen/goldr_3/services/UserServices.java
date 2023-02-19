@@ -14,17 +14,15 @@ public class UserServices {
     private UserRepo userRepo;
 
     public Optional<User> getUserById(Integer userId) {
-
         try {
             return userRepo.findById(userId);
-
         } catch (Exception e) {
             System.err.println("Error occurred while getting user by ID: " + e.getMessage());
             return Optional.empty();
         }
     }
 
-//    need to implement
+    //    need to implement
     public void addUser(User user) {
         userRepo.save(user);
     }
@@ -61,7 +59,26 @@ public class UserServices {
         }
     }
 
-//    need to implement
+    //    to authenticate the login user
+    public User login(String email, String password) {
+        Optional<User> userData = userRepo.findByEmail(email);
+        User user = null;
+
+        try {
+            if (userData.isPresent()) {
+                User _user = userData.get();
+                if (_user.getPassword().equals(password)) {
+                    user = _user;
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("An error occurred while trying to log in: " + e.getMessage());
+        }
+
+        return user;
+    }
+
+    //    need to implement
     public void deleteUser(Integer id) {
         userRepo.deleteById(id);
     }

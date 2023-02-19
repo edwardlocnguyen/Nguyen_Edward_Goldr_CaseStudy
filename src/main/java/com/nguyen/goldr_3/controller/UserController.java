@@ -33,9 +33,16 @@ public class UserController {
     //    fxn to get the user's age
     public int calculateUserAge(User _user) {
         LocalDate dob = _user.getDob();
-        int age = (int) ChronoUnit.YEARS.between(dob, LocalDate.now());
-        return age;
+        int age = 0;
+        try {
+            age = (int) ChronoUnit.YEARS.between(dob, LocalDate.now());
+            return age;
+        } catch (NullPointerException e) {
+            System.out.println("The date of birth for the user is null.");
+            return age;
+        }
     }
+
 
     //    fxn to get user's latest entries per account
     public List<Map<String, Object>> getLatestEntriesPerAccount(List<Entry> userLatestEntriesPerAccount) {
@@ -144,7 +151,7 @@ public class UserController {
         return "redirect:/users/" + userId + "/profile";
     }
 
-//    goes to user home page
+    //    goes to user home page
     @GetMapping("/home")
     public String userHome(@PathVariable("userId") Integer userId, Model model) {
 
@@ -181,7 +188,7 @@ public class UserController {
         return "home";
     }
 
-//    goes to user accounts page
+    //    goes to user accounts page
     @GetMapping("/accounts-amounts")
     public String userAccount(@PathVariable("userId") Integer userId, Model model) {
 
