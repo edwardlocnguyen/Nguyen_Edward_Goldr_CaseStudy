@@ -87,7 +87,6 @@ public class UserController {
         return totalAmount;
     }
 
-
     //    fxn to get category amounts from latest entries
     public List<Map<String, Object>> getCategoryAmountList(List<Map<String, Object>> latestEntriesPerAccount) {
         // map to store the category ID as key and category details (ID, name and amount) as value
@@ -145,7 +144,44 @@ public class UserController {
         return "redirect:/users/" + userId + "/profile";
     }
 
-    //    goes to user accounts page
+//    goes to user home page
+    @GetMapping("/home")
+    public String userHome(@PathVariable("userId") Integer userId, Model model) {
+
+//        get user data
+        Optional<User> user = userServices.getUserById(userId);
+        User _user = user.get();
+        int userAge = calculateUserAge(_user);
+
+//        get user's entries
+        List<Entry> userEntries = entryServices.getEntriesByUserId(userId);
+//        get user's latest entries per account for the account card
+        List<Map<String, Object>> latestEntriesPerAccount = getLatestEntriesPerAccount(userEntries);
+//        get user's latest entries per account total amount for the account card
+        double latestEntriesPerAccountTotalAmount = getTotalAmount(latestEntriesPerAccount);
+        String formattedTotalAmount = String.format("%.2f", latestEntriesPerAccountTotalAmount);
+
+//        get user's category amounts for the table
+        List<Map<String, Object>> categoryAmountList = getCategoryAmountList(latestEntriesPerAccount);
+//        loop through the categoryAmountList to add the categoryAllocation key
+        for (Map<String, Object> categoryAmount : categoryAmountList) {
+            double categoryAmountValue = (double) categoryAmount.get("categoryAmount");
+            double categoryAllocation = (categoryAmountValue / latestEntriesPerAccountTotalAmount) * 100.0;
+            String formattedCategoryAmount = String.format("%.2f", categoryAmountValue);
+            categoryAmount.put("categoryAmount", formattedCategoryAmount);
+            categoryAmount.put("categoryAllocation", String.format("%.2f", categoryAllocation) + "%");
+        }
+
+        model.addAttribute("user", _user);
+        model.addAttribute("userAge", userAge);
+        model.addAttribute("latestEntriesPerAccount", latestEntriesPerAccount);
+        model.addAttribute("formattedTotalAmount", formattedTotalAmount);
+        model.addAttribute("categoryAmountList", categoryAmountList);
+
+        return "home";
+    }
+
+//    goes to user accounts page
     @GetMapping("/accounts-amounts")
     public String userAccount(@PathVariable("userId") Integer userId, Model model) {
 
@@ -197,7 +233,7 @@ public class UserController {
             categoryAmount.put("categoryAmount", formattedCategoryAmount);
             categoryAmount.put("categoryAllocation", String.format("%.2f", categoryAllocation) + "%");
         }
-        
+
         model.addAttribute("category", new Category());
         model.addAttribute("userCategories", userCategories);
         model.addAttribute("formattedTotalAmount", formattedTotalAmount);
