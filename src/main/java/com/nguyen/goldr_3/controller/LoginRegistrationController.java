@@ -5,12 +5,15 @@ import com.nguyen.goldr_3.model.User;
 import com.nguyen.goldr_3.repository.UserRepo;
 import com.nguyen.goldr_3.services.UserServices;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.security.SecureRandom;
 
 @Controller
 public class LoginRegistrationController {
@@ -28,6 +31,12 @@ public class LoginRegistrationController {
 
     @PostMapping("/register")
     public String createUser(@ModelAttribute("user") User user) {
+//        bcrypt
+        int scramble = 8;
+        BCryptPasswordEncoder bcryptEncoder = new BCryptPasswordEncoder(scramble, new SecureRandom());
+        String scrambled_pw = bcryptEncoder.encode(user.getPassword());
+        user.setPassword(scrambled_pw);
+
         userServices.addUser(user);
         int userId = user.getId();
         return "redirect:/users/" + userId + "/home";
@@ -43,6 +52,11 @@ public class LoginRegistrationController {
             model.addAttribute("loginError", "Invalid email or password");
             return "index";
         }
+    }
+
+    @GetMapping("/signout")
+    public String signout() {
+        return "index";
     }
 
 }

@@ -11,3 +11,6 @@ assetsLink.href = "/users/" + userId + "/categories-amounts";
 
 var assetsLink = document.getElementById("profile-link");
 assetsLink.href = "/users/" + userId + "/profile";
+
+var assetsLink = document.getElementById("signout-link");
+assetsLink.href = "/signout";

@@ -3,6 +3,7 @@ package com.nguyen.goldr_3.services;
 import com.nguyen.goldr_3.model.User;
 import com.nguyen.goldr_3.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -67,7 +68,10 @@ public class UserServices {
         try {
             if (userData.isPresent()) {
                 User _user = userData.get();
-                if (_user.getPassword().equals(password)) {
+
+                BCryptPasswordEncoder bcryptEncoder = new BCryptPasswordEncoder();
+
+                if (bcryptEncoder.matches(password, _user.getPassword())) {
                     user = _user;
                 }
             }
