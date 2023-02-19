@@ -35,9 +35,13 @@ public class User implements Serializable {
     @OneToMany(mappedBy = "user", targetEntity = Account.class, cascade = CascadeType.ALL)
     private List<Account> accounts;
 
-//    @JsonManagedReference
-//    @OneToMany(mappedBy = "user", targetEntity = Category.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//    private List<Category> category;
+    @JsonManagedReference
+    @OneToMany(mappedBy = "user", targetEntity = Category.class, cascade = CascadeType.ALL)
+    private List<Category> category;
+
+    @JsonManagedReference
+    @OneToMany(mappedBy = "user", targetEntity = Entry.class, cascade = CascadeType.ALL)
+    private List<Entry> entries;
 
     public User() {
         this.email = "";
@@ -48,11 +52,11 @@ public class User implements Serializable {
         this.dob = null;
         this.creditScore = 0;
         this.accounts = null;
-//        this.category = null;
-//        this.txns = null;
+        this.category = null;
+        this.entries = null;
     }
 
-    public User(int id, String email, String password, String firstName, String lastName, String occupation, LocalDate dob, Integer creditScore, List<Account> accounts) {
+    public User(int id, String email, String password, String firstName, String lastName, String occupation, LocalDate dob, Integer creditScore, List<Account> accounts, List<Category> category, List<Entry> entries) {
         this.id = id;
         this.email = email;
         this.password = password;
@@ -62,6 +66,8 @@ public class User implements Serializable {
         this.dob = dob;
         this.creditScore = creditScore;
         this.accounts = accounts;
+        this.category = category;
+        this.entries = entries;
     }
 
     public int getId() {
@@ -136,6 +142,22 @@ public class User implements Serializable {
         this.accounts = accounts;
     }
 
+    public List<Category> getCategory() {
+        return category;
+    }
+
+    public void setCategory(List<Category> category) {
+        this.category = category;
+    }
+
+    public List<Entry> getEntries() {
+        return entries;
+    }
+
+    public void setEntries(List<Entry> entries) {
+        this.entries = entries;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -148,6 +170,8 @@ public class User implements Serializable {
                 ", dob=" + dob +
                 ", creditScore=" + creditScore +
                 ", accounts=" + accounts +
+                ", category=" + category +
+                ", entries=" + entries +
                 '}';
     }
 }

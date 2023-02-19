@@ -22,10 +22,23 @@ public class Entry implements Serializable {
     @ManyToOne(targetEntity = Account.class)
     private Account account;
 
+    @JsonBackReference
+    @ManyToOne(targetEntity = User.class)
+    private User user;
+
     public Entry() {
         this.amount = 0.0;
         this.date = null;
         this.account = null;
+        this.user = null;
+    }
+
+    public Entry(int id, double amount, LocalDate date, Account account, User user) {
+        this.id = id;
+        this.amount = amount;
+        this.date = date;
+        this.account = account;
+        this.user = user;
     }
 
     public int getId() {
@@ -60,6 +73,14 @@ public class Entry implements Serializable {
         this.account = account;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     @Override
     public String toString() {
         return "Entry{" +
@@ -67,8 +88,7 @@ public class Entry implements Serializable {
                 ", amount=" + amount +
                 ", date=" + date +
                 ", account=" + account +
+                ", user=" + user +
                 '}';
     }
-
-
 }

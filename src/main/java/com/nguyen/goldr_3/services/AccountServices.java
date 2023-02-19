@@ -1,8 +1,10 @@
 package com.nguyen.goldr_3.services;
 
 import com.nguyen.goldr_3.model.Account;
+import com.nguyen.goldr_3.model.Category;
 import com.nguyen.goldr_3.model.User;
 import com.nguyen.goldr_3.repository.AccountRepo;
+import com.nguyen.goldr_3.repository.CategoryRepo;
 import com.nguyen.goldr_3.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +20,8 @@ public class AccountServices {
     private AccountRepo accountRepo;
     @Autowired
     private UserRepo userRepo;
+    @Autowired
+    private CategoryRepo categoryRepo;
 
     public List<Account> getAccountsByUserId(Integer userId) {
         return accountRepo.findByUserId(userId);
@@ -27,8 +31,16 @@ public class AccountServices {
         Optional<User> user = userRepo.findById(userId);
 
         if (user.isPresent()) {
-            account.setUser(user.get());
-            accountRepo.save(account);
+            try {
+                Optional<Category> category = categoryRepo.findById(account.getCategory().getId());
+                if (category.isPresent()) {
+                    account.setUser(user.get());
+                    account.setCategory(category.get());
+                    accountRepo.save(account);
+                }
+            } catch (NullPointerException e) {
+                System.out.println("Category is null");
+            }
         }
     }
 

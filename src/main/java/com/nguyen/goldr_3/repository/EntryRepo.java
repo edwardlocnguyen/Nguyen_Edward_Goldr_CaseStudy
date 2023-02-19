@@ -9,6 +9,6 @@ import java.util.List;
 @Repository
 public interface EntryRepo extends JpaRepository<Entry, Integer> {
 
-    List<Entry> findByAccountId(Integer accountId);
+    List<Entry> findByUserId(Integer userId);
 
 }

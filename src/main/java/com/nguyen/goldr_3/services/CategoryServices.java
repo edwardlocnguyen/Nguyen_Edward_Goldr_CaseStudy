@@ -41,9 +41,11 @@ public class CategoryServices {
 
         if (categoryData.isPresent()) {
             Category _category = categoryData.get();
+
             if (!category.getName().isEmpty()) {
                 _category.setName(category.getName());
             }
+
             categoryRepo.save(_category);
         }
     }

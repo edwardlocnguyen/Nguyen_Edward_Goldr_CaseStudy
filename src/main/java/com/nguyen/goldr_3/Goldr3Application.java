@@ -61,12 +61,20 @@ public class Goldr3Application {
 		account1.setCategory(category1);
 		accountRepo.save(account1);
 
-//		create entry
+//		create entries
 		Entry entry1 = new Entry();
 		entry1.setAmount(1000.01);
 		entry1.setDate(LocalDate.now());
 		entry1.setAccount(account1);
+		entry1.setUser(user1);
 		entryRepo.save(entry1);
+
+		Entry entry2 = new Entry();
+		entry2.setAmount(2000.02);
+		entry2.setDate(LocalDate.now());
+		entry2.setAccount(account1);
+		entry2.setUser(user1);
+		entryRepo.save(entry2);
 
 	}
 

@@ -19,37 +19,37 @@
     <div class="row row-cols-1 row-cols-md-1 g-4">
         <div class="col">
             <div id="each_card" class="card text-bg-dark mb-3 border-light h-100">
-                <!--                <table id="table-test" class="table table-light table-striped table-hover">-->
-                <!--                    <thead>-->
-                <!--                    <tr>-->
-                <!--                        <th scope="col">#</th>-->
-                <!--                        <th scope="col">Account Name</th>-->
-                <!--                        <th scope="col">Asset Type</th>-->
-                <!--                        <th scope="col">Amount</th>-->
-                <!--                    </tr>-->
-                <!--                    </thead>-->
-                <!--                    <tbody id="accounts-table-body">-->
-                <!--                    &lt;!&ndash; Iterate over userLatestAccountTxns and populate the table rows &ndash;&gt;-->
-                <!--                    <tr th:each="txn, i : ${userLatestAccountTxns}">-->
-                <!--                        <td th:text="${i.index + 1}"></td>-->
-                <!--                        <td th:text="${txn.accountName}"></td>-->
-                <!--                        <td th:text="${txn.assetName}"></td>-->
-                <!--                        <td th:text="'$' + ${txn.amount}"></td>-->
-                <!--                    </tr>-->
-                <!--                    <tr>-->
-                <!--                        <td></td>-->
-                <!--                        <td></td>-->
-                <!--                        <td></td>-->
-                <!--                        <td></td>-->
-                <!--                    </tr>-->
-                <!--                    <tr>-->
-                <!--                        <td></td>-->
-                <!--                        <td>TOTAL</td>-->
-                <!--                        <td></td>-->
-                <!--                        <td th:text="'$' + ${totalAmount}"></td>-->
-                <!--                    </tr>-->
-                <!--                    </tbody>-->
-                <!--                </table>-->
+                <table id="table-test" class="table table-light table-striped table-hover">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Account Name</th>
+                        <th scope="col">Asset Type</th>
+                        <th scope="col">Amount</th>
+                    </tr>
+                    </thead>
+                    <tbody id="accounts-table-body">
+                    <!-- Iterate over latestEntriesPerAccount and populate the table rows -->
+                    <tr th:each="entry, i : ${latestEntriesPerAccount}">
+                        <td th:text="${i.index + 1}"></td>
+                        <td th:text="${entry.entryAccountName}"></td>
+                        <td th:text="${entry.entryAccountCategoryName}"></td>
+                        <td th:text="'$' + ${entry.entryAmount}"></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>TOTAL</td>
+                        <td></td>
+                        <td th:text="'$' + ${latesEntriesPerAccountTotalAmount}"></td>
+                    </tr>
+                    </tbody>
+                </table>
                 <div id="table_card-body" class="card-body"></div>
             </div>
         </div>
@@ -94,8 +94,16 @@
                             <input type="text" class="form-control" id="name" name="name" th:field="*{name}"
                                    placeholder="Account Name">
                         </div>
+                        <div class="mb-3">
+                            <label for="category" class="form-label">Category</label>
+                            <select class="form-select" id="category" name="category.id">
+                                <option value="">Select Category</option>
+                                <option th:each="category : ${userCategories}" th:value="${category.id}"
+                                        th:text="${category.name}"></option>
+                            </select>
+                        </div>
                         <div class="col-auto">
-                            <button type="submit" value="Create" class="btn btn-primary mb-3">Submit
+                            <button type="submit" value="Create" class="btn btn-primary mb-3">Create
                             </button>
                         </div>
                     </form>
@@ -105,31 +113,33 @@
         <div class="col">
             <div class="card text-bg-dark mb-3 border-light h-100">
                 <div class="card-body">
-                    <!--                    <form method="POST" th:object="${txn}" id="txnForm"-->
-                    <!--                          th:action="@{'/users/' + ${userIdTxn} + '/txns/post'}">-->
-                    <!--                        <div class="mb-3">-->
-                    <!--                            <input type="hidden" id="userIdTxn" name="userIdTxn" th:value="${id}"/>-->
-                    <!--                            <label for="amount" class="form-label">Amount</label>-->
-                    <!--                            <input type="number" class="form-control" id="amount" name="amount" th:field="*{amount}"-->
-                    <!--                                   step="0.01" placeholder="Enter amount"> <label for="date">Date</label>-->
-                    <!--                            <input type="date" id="date" name="date" th:field="*{date}"/>-->
-                    <!--                            <label for="account" class="form-label">Account</label>-->
-                    <!--                            <select name="account.id">-->
-                    <!--                                <option th:value="${null}" th:selected="${txn.account == null}">Select Account</option>-->
-                    <!--                                <option th:each="account : ${userAccounts}" th:value="${account.id}"-->
-                    <!--                                        th:selected="${account.id == txn.account?.id}"><span-->
-                    <!--                                        th:text="${account.name}"></span></option>-->
-                    <!--                            </select> <label for="asset">Asset</label> <select name="asset.id">-->
-                    <!--                            <option th:value="${null}" th:selected="${txn.asset == null}">Select an Asset</option>-->
-                    <!--                            <option th:each="asset : ${userAssets}" th:value="${asset.id}"-->
-                    <!--                                    th:selected="${asset.id == txn.asset?.id}"><span th:text="${asset.name}"></span>-->
-                    <!--                            </option>-->
-                    <!--                        </select>-->
-                    <!--                        </div>-->
-                    <!--                        <div class="col-auto">-->
-                    <!--                            <button type="submit" value="Submit" class="btn btn-primary mb-3">Submit</button>-->
-                    <!--                        </div>-->
-                    <!--                    </form>-->
+                    <form method="POST" th:object="${entry}" id="txnForm"
+                          th:action="@{/users/{userId}/entries}">
+                        <input type="hidden" id="userId2" name="userId" th:value="${userId}"/>
+                        <div class="mb-3">
+                            <label for="amount" class="form-label">Create New Entry Amount</label>
+                            <input type="number" class="form-control" id="amount" name="amount" th:field="*{amount}"
+                                   step="0.01" placeholder="Enter amount" required/>
+                        </div>
+                        <div class="mb-3">
+                            <label for="date">Date</label>
+                            <input type="date" id="date" name="date" th:field="*{date}" required/>
+                        </div>
+                        <div class="mb-3">
+                            <label for="account" class="form-label">Account</label>
+                            <select class="form-select" name="account.id" id="account">
+                                <option th:value="${null}" th:selected="${entry.account == null}">Select Account
+                                </option>
+                                <option th:each="account : ${userAccounts}" th:value="${account.id}"
+                                        th:selected="${account.id == entry.account?.id}">
+                                    <span th:text="${account.name}"></span>
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-auto">
+                            <button type="submit" value="Submit" class="btn btn-primary mb-3">Submit</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

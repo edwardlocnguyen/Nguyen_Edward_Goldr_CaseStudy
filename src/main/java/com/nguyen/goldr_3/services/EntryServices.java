@@ -5,6 +5,7 @@ import com.nguyen.goldr_3.model.Entry;
 import com.nguyen.goldr_3.model.User;
 import com.nguyen.goldr_3.repository.AccountRepo;
 import com.nguyen.goldr_3.repository.EntryRepo;
+import com.nguyen.goldr_3.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,18 +18,29 @@ public class EntryServices {
     @Autowired
     private EntryRepo entryRepo;
     @Autowired
+    private UserRepo userRepo;
+    @Autowired
     private AccountRepo accountRepo;
 
-    public List<Entry> getEntriesByAccountId(Integer accountId) {
-        return entryRepo.findByAccountId(accountId);
+    public List<Entry> getEntriesByUserId(Integer userId) {
+        return entryRepo.findByUserId(userId);
     }
 
-    public void addEntry(Integer accountId, Entry entry) {
-        Optional<Account> account = accountRepo.findById(accountId);
+    public void addEntry(Integer userId, Entry entry) {
+        Optional<User> user = userRepo.findById(userId);
 
-        if (account.isPresent()) {
-            entry.setAccount(account.get());
-            entryRepo.save(entry);
+        if (user.isPresent()) {
+            try {
+                Optional<Account> account = accountRepo.findById(entry.getAccount().getId());
+                if (account.isPresent()) {
+                    entry.setUser(user.get());
+                    entry.setAccount(account.get());
+                    entryRepo.save(entry);
+                }
+
+            } catch (NullPointerException e) {
+                System.out.println("Account is null");
+            }
         }
     }
 

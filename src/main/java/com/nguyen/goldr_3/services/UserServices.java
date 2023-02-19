@@ -14,8 +14,10 @@ public class UserServices {
     private UserRepo userRepo;
 
     public Optional<User> getUserById(Integer userId) {
+
         try {
             return userRepo.findById(userId);
+
         } catch (Exception e) {
             System.err.println("Error occurred while getting user by ID: " + e.getMessage());
             return Optional.empty();
@@ -32,6 +34,7 @@ public class UserServices {
 
         if (userData.isPresent()) {
             User _user = userData.get();
+
             if (!user.getEmail().isEmpty()) {
                 _user.setEmail(user.getEmail());
             }
@@ -53,6 +56,7 @@ public class UserServices {
             if (user.getCreditScore() != null) {
                 _user.setCreditScore(user.getCreditScore());
             }
+
             userRepo.save(_user);
         }
     }
