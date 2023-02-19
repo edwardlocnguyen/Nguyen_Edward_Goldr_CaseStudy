@@ -20,38 +20,39 @@
         <div class="col">
             <div id="each_card"
                  class="card text-bg-dark mb-3 border-light h-100">
-                <!--                <table id="table"-->
-                <!--                       class="table table-light table-striped table-hover">-->
-                <!--                    <thead>-->
-                <!--                    <tr>-->
-                <!--                        <th scope="col">#</th>-->
-                <!--                        <th scope="col">Asset Name</th>-->
-                <!--                        <th scope="col">Allocation</th>-->
-                <!--                        <th scope="col">Amount</th>-->
-                <!--                    </tr>-->
-                <!--                    </thead>-->
-                <!--                    <tbody id="assets-table-body">-->
-                <!--                    &lt;!&ndash; Loop through the assetAmountsList and populate the table &ndash;&gt;-->
-                <!--                    <tr th:each="asset, i : ${assetAmountsAndTotal}">-->
-                <!--                        <td th:text="${i.index + 1}"></td>-->
-                <!--                        <td th:text="${asset.assetName}"></td>-->
-                <!--                        <td th:text="${asset.assetPercentage} + '%'"></td>-->
-                <!--                        <td th:text="'$' + ${asset.totalAmount}"></td>-->
-                <!--                    </tr>-->
-                <!--                    <tr>-->
-                <!--                        <td></td>-->
-                <!--                        <td></td>-->
-                <!--                        <td></td>-->
-                <!--                        <td></td>-->
-                <!--                    </tr>-->
-                <!--                    <tr>-->
-                <!--                        <td></td>-->
-                <!--                        <td>TOTAL</td>-->
-                <!--                        <td>100.00%</td>-->
-                <!--                        <td th:text="'$' + ${totalAmount}"></td>-->
-                <!--                    </tr>-->
-                <!--                    </tbody>-->
-                <!--                </table>-->
+                <table id="table"
+                       class="table table-light table-striped table-hover">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Category Name</th>
+                        <th scope="col">Allocation</th>
+                        <th scope="col">Amount</th>
+                    </tr>
+                    </thead>
+                    <tbody id="categories-table-body">
+                    <!-- Loop through the categoryAmountList and populate the table -->
+                    <tr th:each="category, i : ${categoryAmountList}">
+                        <td th:text="${i.index + 1}"></td>
+                        <td th:text="${category.categoryName}"></td>
+                        <td th:text="${category.categoryAllocation}"></td>
+                        <td th:text="'$' + ${category.categoryAmount}"></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>TOTAL</td>
+                        <td>100.00%</td>
+                        <td th:text="'$' + ${formattedTotalAmount}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+
                 <div id="table_card-body" class="card-body"></div>
             </div>
         </div>

@@ -63,7 +63,7 @@ public class UserController {
         for (Entry entry : latestEntries.values()) {
             Map<String, Object> entryMap = new HashMap<>();
             entryMap.put("entryId", entry.getId());
-            entryMap.put("entryAmount", entry.getAmount());
+            entryMap.put("entryAmount", String.format("%.2f", entry.getAmount()));
             entryMap.put("entryDate", entry.getDate().toString());
             entryMap.put("entryAccountId", entry.getAccount().getId());
             entryMap.put("entryAccountName", entry.getAccount().getName());
@@ -75,14 +75,51 @@ public class UserController {
         return result;
     }
 
-//    fxn to get the total amount from the latest entries
+    //    fxn to get the total amount from the latest entries
     public double getTotalAmount(List<Map<String, Object>> latestEntriesPerAccount) {
         double totalAmount = 0.0;
+
         for (Map<String, Object> entry : latestEntriesPerAccount) {
-            double amount = (double) entry.get("entryAmount");
+            double amount = Double.parseDouble((String) entry.get("entryAmount"));
             totalAmount += amount;
         }
+
         return totalAmount;
+    }
+
+
+    //    fxn to get category amounts from latest entries
+    public List<Map<String, Object>> getCategoryAmountList(List<Map<String, Object>> latestEntriesPerAccount) {
+        // map to store the category ID as key and category details (ID, name and amount) as value
+        Map<Integer, Map<String, Object>> categoryMap = new HashMap<>();
+
+        for (Map<String, Object> entry : latestEntriesPerAccount) {
+            // get the category ID from the latest entry
+            int categoryId = (int) entry.get("entryAccountCategoryId");
+
+            // get the category map from the categoryMap map, or create a new empty map
+            Map<String, Object> category = categoryMap.getOrDefault(categoryId, new HashMap<>());
+
+            // update the category details with the new entry amount and account name
+            category.put("categoryId", categoryId);
+            category.put("categoryName", entry.get("entryAccountCategoryName"));
+            category.put("categoryAmount", (double) category.getOrDefault("categoryAmount", 0.0) + Double.parseDouble((String) entry.get("entryAmount")));
+
+            // put the updated category map back to the categoryMap map
+            categoryMap.put(categoryId, category);
+        }
+
+        // create a list to store the result
+        List<Map<String, Object>> result = new ArrayList<>();
+
+        // loop through each category map in categoryMap map
+        for (Map<String, Object> category : categoryMap.values()) {
+            // add the category map to the result list
+            result.add(category);
+        }
+
+        // return the result list
+        return result;
     }
 
     //    goes to user profile page
@@ -117,20 +154,20 @@ public class UserController {
 //        get user's categories for the create entry form
         List<Category> userCategories = categoryServices.getCategoriesByUserId(userId);
 
-//        get user's latest entries for the table
-        List<Entry> userLatestEntriesPerAccount = entryServices.getEntriesByUserId(userId);
+//        get user's entries
+        List<Entry> userEntries = entryServices.getEntriesByUserId(userId);
 //        get user's latest entries per account for the table
-        List<Map<String, Object>> latestEntriesPerAccount = getLatestEntriesPerAccount(userLatestEntriesPerAccount);
-//        get the user's total amount for the latest entries per account for the table
-        double latesEntriesPerAccountTotalAmount = getTotalAmount(latestEntriesPerAccount);
-
+        List<Map<String, Object>> latestEntriesPerAccount = getLatestEntriesPerAccount(userEntries);
+//        get user's latest entries per account total amount for the table
+        double latestEntriesPerAccountTotalAmount = getTotalAmount(latestEntriesPerAccount);
+        String formattedTotalAmount = String.format("%.2f", latestEntriesPerAccountTotalAmount);
 
         model.addAttribute("account", new Account());
         model.addAttribute("entry", new Entry());
         model.addAttribute("userAccounts", userAccounts);
         model.addAttribute("userCategories", userCategories);
         model.addAttribute("latestEntriesPerAccount", latestEntriesPerAccount);
-        model.addAttribute("latesEntriesPerAccountTotalAmount", latesEntriesPerAccountTotalAmount);
+        model.addAttribute("formattedTotalAmount", formattedTotalAmount);
 
         return "account";
     }
@@ -142,8 +179,29 @@ public class UserController {
 //        get the user's categories for the delete buttons
         List<Category> userCategories = categoryServices.getCategoriesByUserId(userId);
 
+//        get user's entries
+        List<Entry> userEntries = entryServices.getEntriesByUserId(userId);
+//        get user's latest entries per account
+        List<Map<String, Object>> latestEntriesPerAccount = getLatestEntriesPerAccount(userEntries);
+//        get user's latest entries per account total amount for the table
+        double latestEntriesPerAccountTotalAmount = getTotalAmount(latestEntriesPerAccount);
+        String formattedTotalAmount = String.format("%.2f", latestEntriesPerAccountTotalAmount);
+
+//        get user's category amounts for the table
+        List<Map<String, Object>> categoryAmountList = getCategoryAmountList(latestEntriesPerAccount);
+//        loop through the categoryAmountList to add the categoryAllocation key
+        for (Map<String, Object> categoryAmount : categoryAmountList) {
+            double categoryAmountValue = (double) categoryAmount.get("categoryAmount");
+            double categoryAllocation = (categoryAmountValue / latestEntriesPerAccountTotalAmount) * 100.0;
+            String formattedCategoryAmount = String.format("%.2f", categoryAmountValue);
+            categoryAmount.put("categoryAmount", formattedCategoryAmount);
+            categoryAmount.put("categoryAllocation", String.format("%.2f", categoryAllocation) + "%");
+        }
+        
         model.addAttribute("category", new Category());
         model.addAttribute("userCategories", userCategories);
+        model.addAttribute("formattedTotalAmount", formattedTotalAmount);
+        model.addAttribute("categoryAmountList", categoryAmountList);
 
         return "category";
     }
