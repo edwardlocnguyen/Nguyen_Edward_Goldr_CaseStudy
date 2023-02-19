@@ -61,56 +61,56 @@
                 <div class="card-body">
                     <h5 class="card-title">Financial Accounts</h5>
                     <p class="card-text">
-                        <a th:href="@{/users/{id}/accounts-amounts(id=${id})}">Go to accounts</a>
+                        <a th:href="@{/users/{userId}/accounts-amounts(userId=${userId})}">Go to accounts</a>
                     </p>
                 </div>
-<!--                <table id="accounts-table" class="table table-light table-striped table-hover">-->
-<!--                    <thead>-->
-<!--                    </thead>-->
-<!--                    <tbody id="accounts-table-body">-->
-<!--                    <tr th:each="txn : ${userLatestAccountTxns}">-->
-<!--                        <td th:text="${txn.accountName}"></td>-->
-<!--                        <td th:text="'$' + ${txn.amount}"></td>-->
-<!--                    </tr>-->
-<!--                    <tr>-->
-<!--                        <td></td>-->
-<!--                        <td></td>-->
-<!--                    </tr>-->
-<!--                    <tr>-->
-<!--                        <td>TOTAL</td>-->
-<!--                        <td th:text="'$' + ${totalAmount}"></td>-->
-<!--                    </tr>-->
-<!--                    </tbody>-->
-<!--                </table>-->
+                <table id="accounts-table" class="table table-light table-striped table-hover">
+                    <thead>
+                    </thead>
+                    <tbody id="accounts-table-body">
+                    <tr th:each="entry : ${latestEntriesPerAccount}">
+                        <td th:text="${entry.entryAccountName}"></td>
+                        <td th:text="'$' + ${entry.entryAmount}"></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>TOTAL</td>
+                        <td th:text="'$' + ${formattedTotalAmount}"></td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
         <div class="col">
             <div class="card text-bg-dark mb-3 border-light h-100">
                 <img src="https://i.imgur.com/o72IwZL.png" class="card-img-top" alt="assets-pic" id="assets-pic">
                 <div class="card-body">
-                    <h5 class="card-title">Asset Type Allocation</h5>
+                    <h5 class="card-title">Category Allocation</h5>
                     <p class="card-text">
-                        <a th:href="@{/users/{id}/assets-amounts(id=${id})}">Go to assets</a>
+                        <a th:href="@{/users/{userId}/categories-amounts(userId=${userId})}">Go to categories</a>
                     </p>
                 </div>
-<!--                <table id="categories-table" class="table table-light table-striped table-hover">-->
-<!--                    <thead>-->
-<!--                    </thead>-->
-<!--                    <tbody id="categories-table-body">-->
-<!--                    <tr th:each="asset : ${assetAmountsAndTotal}">-->
-<!--                        <td th:text="${asset.assetName}"></td>-->
-<!--                        <td th:text="${asset.assetPercentage} + '%'"></td>-->
-<!--                    </tr>-->
-<!--                    <tr>-->
-<!--                        <td></td>-->
-<!--                        <td></td>-->
-<!--                    </tr>-->
-<!--                    <tr>-->
-<!--                        <td>TOTAL</td>-->
-<!--                        <td>100.00%</td>-->
-<!--                    </tr>-->
-<!--                    </tbody>-->
-<!--                </table>-->
+                <table id="categories-table" class="table table-light table-striped table-hover">
+                    <thead>
+                    </thead>
+                    <tbody id="categories-table-body">
+                    <tr th:each="category : ${categoryAmountList}">
+                        <td th:text="${category.categoryName}"></td>
+                        <td th:text="${category.categoryAllocation}"></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>TOTAL</td>
+                        <td>100.00%</td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
         <div class="col">
