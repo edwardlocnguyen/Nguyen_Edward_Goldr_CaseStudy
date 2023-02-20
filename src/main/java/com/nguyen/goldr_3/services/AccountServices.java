@@ -65,4 +65,9 @@ public class AccountServices {
     public void deleteAccount(Integer AccountId) {
         accountRepo.deleteById(AccountId);
     }
+
+    //    for AccountServicesTest
+    public void setAccountRepo(AccountRepo accountRepo) {
+        this.accountRepo = accountRepo;
+    }
 }

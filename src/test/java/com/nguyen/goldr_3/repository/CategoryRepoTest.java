@@ -14,7 +14,7 @@ import static org.mockito.Mockito.when;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /*
-testing custom query findByUserId in CategoryRepo
+    testing custom query findByUserId in CategoryRepo
  */
 
 @ExtendWith(MockitoExtension.class)

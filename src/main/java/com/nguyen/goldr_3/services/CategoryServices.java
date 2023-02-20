@@ -58,4 +58,9 @@ public class CategoryServices {
         categoryRepo.deleteById(categoryId);
     }
 
+//    for CategoryServicesTest
+    public void setCategoryRepo(CategoryRepo categoryRepo) {
+        this.categoryRepo = categoryRepo;
+    }
+
 }

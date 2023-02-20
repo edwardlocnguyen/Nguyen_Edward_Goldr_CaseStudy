@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
 /*
-testing custom query findByEmail in UserRepo
+    testing custom query findByEmail in UserRepo
  */
 
 @ExtendWith(MockitoExtension.class)

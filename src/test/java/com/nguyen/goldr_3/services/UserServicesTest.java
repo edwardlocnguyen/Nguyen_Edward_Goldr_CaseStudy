@@ -4,6 +4,8 @@ import com.nguyen.goldr_3.model.User;
 import com.nguyen.goldr_3.repository.UserRepo;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
@@ -13,7 +15,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
 /*
-testing method getUserById in UserServices
+    testing method getUserById in UserServices
+    also a parameterized test testing different user IDs
  */
 
 @ExtendWith(MockitoExtension.class)
@@ -22,11 +25,12 @@ public class UserServicesTest {
     @Mock
     private UserRepo userRepo;
 
-    @Test
-    public void testGetUserById() {
+    @ParameterizedTest
+    @ValueSource(ints = { 1, 2, 3 })
+    public void testGetUserById(int userId) {
 //        given
         User expectedUser = new User();
-        expectedUser.setId(8);
+        expectedUser.setId(userId);
 
         when(userRepo.findById(expectedUser.getId())).thenReturn(Optional.of(expectedUser));
 

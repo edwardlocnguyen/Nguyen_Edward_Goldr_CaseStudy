@@ -72,4 +72,9 @@ public class EntryServices {
         entryRepo.deleteById(entryId);
     }
 
+//    for EntryServicesTest
+    public void setEntryRepo(EntryRepo entryRepo) {
+        this.entryRepo = entryRepo;
+    }
+
 }
