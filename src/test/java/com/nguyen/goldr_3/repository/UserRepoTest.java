@@ -27,6 +27,7 @@ public class UserRepoTest {
         String email = "test@test.com";
         User user = new User();
         user.setEmail(email);
+
         when(userRepo.findByEmail(email)).thenReturn(Optional.of(user));
 
         // when

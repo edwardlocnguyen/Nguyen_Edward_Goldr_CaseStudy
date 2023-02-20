@@ -28,7 +28,6 @@ public class CategoryRepoTest {
 //        given
         User testUser = new User();
         testUser.setId(8);
-        testUser.setEmail("test@test.com");
 
         Category testCategory = new Category();
         testCategory.setName("NFTs");
@@ -39,10 +38,10 @@ public class CategoryRepoTest {
 
         when(categoryRepo.findByUserId(testUser.getId())).thenReturn(expectedCategories);
 
-        // when
+//        when
         List<Category> actualCategories = categoryRepo.findByUserId(testUser.getId());
 
-        // then
+//        then
         assertThat(actualCategories).isNotNull();
         assertThat(actualCategories.size()).isEqualTo(expectedCategories.size());
         assertThat(actualCategories).containsAll(expectedCategories);

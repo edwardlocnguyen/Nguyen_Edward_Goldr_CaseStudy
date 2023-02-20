@@ -97,4 +97,9 @@ public class UserServices {
         userRepo.deleteById(id);
     }
 
+//    for UserServicesTest
+    public void setUserRepo(UserRepo userRepo) {
+        this.userRepo = userRepo;
+    }
+
 }
