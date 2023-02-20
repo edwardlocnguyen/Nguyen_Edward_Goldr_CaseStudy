@@ -5,6 +5,15 @@ body {
     color: white;
 }
 
+#section-div {
+    display: flex;
+    justify-content: center;
+}
+
+#container {
+    width: 60%;
+}
+
 #form-field-div {
     margin: 1% !important;
 }

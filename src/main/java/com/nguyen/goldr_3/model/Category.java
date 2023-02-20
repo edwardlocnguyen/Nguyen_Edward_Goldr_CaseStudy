@@ -7,6 +7,10 @@ import jakarta.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
+/*
+    category model to create financial categories that link financial accounts
+ */
+
 @Entity
 @Table
 public class Category implements Serializable {

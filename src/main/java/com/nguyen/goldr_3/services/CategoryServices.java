@@ -11,6 +11,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/*
+    category services include methods to perform CRUD operations on categories
+ */
+
 @Service
 public class CategoryServices {
 

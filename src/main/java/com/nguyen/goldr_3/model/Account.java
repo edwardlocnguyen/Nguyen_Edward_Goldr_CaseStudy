@@ -7,6 +7,10 @@ import jakarta.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
+/*
+    account model to create financial accounts to track net worth
+ */
+
 @Entity
 @Table
 public class Account implements Serializable {

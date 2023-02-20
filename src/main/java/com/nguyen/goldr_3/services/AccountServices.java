@@ -13,6 +13,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/*
+    account services include methods to perform CRUD operations on accounts
+ */
+
 @Service
 public class AccountServices {
 

@@ -6,6 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+/*
+    category controller includes methods to route user through category-related webpages
+ */
+
 @Controller
 @RequestMapping("/users/{userId}/categories")
 public class CategoryController {

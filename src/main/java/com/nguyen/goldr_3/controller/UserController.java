@@ -17,6 +17,10 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 
+/*
+    user controller includes methods to route user through user-related webpages
+ */
+
 @Controller
 @RequestMapping("/users/{userId}")
 public class UserController {

@@ -12,6 +12,10 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+/*
+    entry services include methods to perform CRUD operations on entries
+ */
+
 @Service
 public class EntryServices {
 

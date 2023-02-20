@@ -2,15 +2,22 @@ package com.nguyen.goldr_3.services;
 
 import com.nguyen.goldr_3.model.User;
 import com.nguyen.goldr_3.repository.UserRepo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+/*
+    user services include methods to perform CRUD operations on users
+ */
+
 @Service
 public class UserServices {
 
+    private static final Logger logger = LoggerFactory.getLogger(UserServices.class);
     @Autowired
     private UserRepo userRepo;
 
@@ -18,7 +25,7 @@ public class UserServices {
         try {
             return userRepo.findById(userId);
         } catch (Exception e) {
-            System.err.println("Error occurred while getting user by ID: " + e.getMessage());
+            logger.error("Error occurred while getting user by ID: {}", e.getMessage());
             return Optional.empty();
         }
     }
@@ -76,7 +83,11 @@ public class UserServices {
                 }
             }
         } catch (Exception e) {
-            System.out.println("An error occurred while trying to log in: " + e.getMessage());
+            logger.error("An error occurred while trying to log in: " + e.getMessage());
+        }
+
+        if (user == null) {
+            logger.info("User not found for email: " + email);
         }
 
         return user;

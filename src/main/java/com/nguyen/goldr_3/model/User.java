@@ -8,6 +8,10 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
+/*
+    user model to create an account with the app
+ */
+
 @Entity
 @Table
 public class User implements Serializable {

@@ -6,6 +6,10 @@ import jakarta.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+/*
+    entry model to create monetary entries to update the account's dollar amount
+ */
+
 @Entity
 @Table
 public class Entry implements Serializable {

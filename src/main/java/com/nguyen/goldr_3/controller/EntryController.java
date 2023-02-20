@@ -10,6 +10,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
+/*
+    entry controller includes methods to route user through entry-related webpages
+ */
+
 @Controller
 @RequestMapping("users/{userId}/entries")
 public class EntryController {

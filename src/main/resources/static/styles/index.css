@@ -5,6 +5,32 @@ body {
     color: white;
 }
 
+#section-div {
+    display: flex;
+    justify-content: center;
+}
+
+#container {
+    width: 80%;
+}
+
 #right-card-body {
     padding: 5% !important;
+}
+
+#password-div {
+    margin-bottom: 0% !important;
+}
+
+#alert-div {
+    display: flex;
+}
+
+#alert {
+    margin: 0% !important;
+    padding: 2% 1% 0% 1% !important;
+}
+
+#button-div {
+    margin-top: 5% !important;
 }
