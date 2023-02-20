@@ -30,7 +30,6 @@ public class UserServices {
         }
     }
 
-    //    need to implement
     public void addUser(User user) {
         userRepo.save(user);
     }

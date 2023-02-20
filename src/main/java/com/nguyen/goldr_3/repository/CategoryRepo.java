@@ -11,5 +11,4 @@ public interface CategoryRepo extends JpaRepository<Category, Integer> {
 
     List<Category> findByUserId(Integer userId);
 
-//    List<Category> findByAccountId(Integer AccountId);
 }
