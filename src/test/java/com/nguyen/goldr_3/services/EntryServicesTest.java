@@ -18,6 +18,10 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
+/*
+    testing method getEntriesByUserId in EntryServices
+ */
+
 public class EntryServicesTest {
 
     private EntryServices entryServices;

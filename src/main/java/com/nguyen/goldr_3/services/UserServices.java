@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.security.SecureRandom;
 import java.util.Optional;
 
 /*
@@ -31,6 +32,12 @@ public class UserServices {
     }
 
     public void addUser(User user) {
+//        bcrypt encoder
+        int scramble = 8;
+        BCryptPasswordEncoder bcryptEncoder = new BCryptPasswordEncoder(scramble, new SecureRandom());
+        String scrambled_pw = bcryptEncoder.encode(user.getPassword());
+        user.setPassword(scrambled_pw);
+
         userRepo.save(user);
     }
 
@@ -77,6 +84,7 @@ public class UserServices {
 
                 BCryptPasswordEncoder bcryptEncoder = new BCryptPasswordEncoder();
 
+//                bcrypt decoder
                 if (bcryptEncoder.matches(password, _user.getPassword())) {
                     user = _user;
                 }

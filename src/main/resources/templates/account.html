@@ -26,6 +26,7 @@
                         <th scope="col">Account Name</th>
                         <th scope="col">Asset Type</th>
                         <th scope="col">Amount</th>
+                        <th scope="col">Last Updated</th>
                     </tr>
                     </thead>
                     <tbody id="accounts-table-body">
@@ -35,8 +36,10 @@
                         <td th:text="${entry.entryAccountName}"></td>
                         <td th:text="${entry.entryAccountCategoryName}"></td>
                         <td th:text="'$' + ${entry.entryAmount}"></td>
+                        <td th:text="${entry.entryDate}"></td>
                     </tr>
                     <tr>
+                        <td></td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -47,6 +50,7 @@
                         <td>TOTAL</td>
                         <td></td>
                         <td th:text="'$' + ${formattedTotalAmount}"></td>
+                        <td></td>
                     </tr>
                     </tbody>
                 </table>
@@ -122,7 +126,7 @@
                                    placeholder="Enter amount" required onfocus="clearAmountField(this)"/>
                         </div>
                         <div class="mb-3">
-                            <label for="date">Date</label>
+                            <label id="date-label" for="date">Date</label>
                             <input type="date" id="date" name="date" th:field="*{date}" required/>
                         </div>
                         <div class="mb-3">
