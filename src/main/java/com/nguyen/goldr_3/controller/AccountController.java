@@ -18,7 +18,7 @@ public class AccountController {
     private AccountServices accountServices;
 
     @PostMapping
-    public String createAccount(@RequestParam("userId") Integer userId, @ModelAttribute("account") Account account) {
+    public String createAccount(@PathVariable("userId") Integer userId, @ModelAttribute("account") Account account) {
         accountServices.addAccount(userId, account);
         return "redirect:/users/" + userId + "/accounts-amounts";
     }

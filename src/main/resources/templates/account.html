@@ -91,9 +91,9 @@
             <div class="card text-bg-dark mb-3 border-light h-100">
                 <div class="card-body">
                     <form method="POST" th:object="${account}" id="accountForm"
-                          th:action="@{/users/{userId}/accounts}">
+                          th:action="@{/users/{userId}/accounts(userId=${userId})}">
                         <div class="mb-3">
-                            <input type="hidden" id="userId" name="userId" th:value="${userId}"/>
+<!--                            <input type="hidden" id="userId" name="userId" th:value="${userId}"/>-->
                             <label for="name" class="form-label">Create New Account</label>
                             <input type="text" class="form-control" id="name" name="name" th:field="*{name}"
                                    placeholder="Account Name">
