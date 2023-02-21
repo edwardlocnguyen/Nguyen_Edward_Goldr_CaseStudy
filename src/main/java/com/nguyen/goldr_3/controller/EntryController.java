@@ -27,9 +27,8 @@ public class EntryController {
 
     //    request param gets value from URL
     @PostMapping
-    public String createEntry(@RequestParam("userId") Integer userId, @ModelAttribute("entry") Entry entry) {
+    public String createEntry(@PathVariable("userId") Integer userId, @ModelAttribute("entry") Entry entry) {
         Integer entry_account_id = entry.getAccount().getId();
-        System.out.println("entry_account_id: " + entry_account_id);
         entryServices.addEntry(userId, entry);
         return "redirect:/users/" + userId + "/accounts-amounts";
     }

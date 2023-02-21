@@ -118,8 +118,8 @@
             <div class="card text-bg-dark mb-3 border-light h-100">
                 <div class="card-body">
                     <form method="POST" th:object="${entry}" id="txnForm"
-                          th:action="@{/users/{userId}/entries}">
-                        <input type="hidden" id="userId2" name="userId" th:value="${userId}"/>
+                          th:action="@{/users/{userId}/entries(userId=${userId})}">
+<!--                        <input type="hidden" id="userId2" name="userId" th:value="${userId}"/>-->
                         <div class="mb-3">
                             <label for="amount" class="form-label">Submit New Entry</label>
                             <input type="number" class="form-control" id="amount" name="amount" th:field="*{amount}"
