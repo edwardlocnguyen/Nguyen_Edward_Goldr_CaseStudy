@@ -132,7 +132,8 @@ public class UserController {
         return result;
     }
 
-    //    goes to user profile page
+//    it seems like @PathVariable takes value from URL, and @RequestParam takes hidden value from form
+//    goes to user profile page
     @GetMapping("/profile")
     public String userProfile(@PathVariable("userId") Integer userId, Model model) {
 
