@@ -31,13 +31,8 @@ public class LoginRegistrationController {
 
     @PostMapping("/register")
     public String createUser(@ModelAttribute("user") User user) {
-//        bcrypt
-//        int scramble = 8;
-//        BCryptPasswordEncoder bcryptEncoder = new BCryptPasswordEncoder(scramble, new SecureRandom());
-//        String scrambled_pw = bcryptEncoder.encode(user.getPassword());
-//        user.setPassword(scrambled_pw);
-
         userServices.addUser(user);
+
         int userId = user.getId();
         return "redirect:/users/" + userId + "/home";
     }

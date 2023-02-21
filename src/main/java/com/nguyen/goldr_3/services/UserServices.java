@@ -1,5 +1,6 @@
 package com.nguyen.goldr_3.services;
 
+import com.nguyen.goldr_3.model.Category;
 import com.nguyen.goldr_3.model.User;
 import com.nguyen.goldr_3.repository.UserRepo;
 import org.slf4j.Logger;
@@ -21,6 +22,8 @@ public class UserServices {
     private static final Logger logger = LoggerFactory.getLogger(UserServices.class);
     @Autowired
     private UserRepo userRepo;
+    @Autowired
+    CategoryServices categoryServices;
 
     public Optional<User> getUserById(Integer userId) {
         try {
@@ -32,13 +35,34 @@ public class UserServices {
     }
 
     public void addUser(User user) {
-//        bcrypt encoder
+//        using bcrypt to encode the new user's password
         int scramble = 8;
         BCryptPasswordEncoder bcryptEncoder = new BCryptPasswordEncoder(scramble, new SecureRandom());
         String scrambled_pw = bcryptEncoder.encode(user.getPassword());
         user.setPassword(scrambled_pw);
 
         userRepo.save(user);
+
+//        create default categories for new user
+        Integer userId = user.getId();
+
+        Category cash = new Category();
+        cash.setName("Cash");
+        Category creditCards = new Category();
+        creditCards.setName("Credit Cards");
+        Category loans = new Category();
+        loans.setName("Loans");
+        Category investments = new Category();
+        investments.setName("Investments");
+        Category property = new Category();
+        property.setName("Property");
+
+        categoryServices.addCategory(userId, cash);
+        categoryServices.addCategory(userId, creditCards);
+        categoryServices.addCategory(userId, loans);
+        categoryServices.addCategory(userId, investments);
+        categoryServices.addCategory(userId, property);
+
     }
 
     public void updateUser(Integer id, User user) {
