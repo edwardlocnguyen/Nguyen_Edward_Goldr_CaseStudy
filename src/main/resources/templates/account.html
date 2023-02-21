@@ -73,10 +73,10 @@
                             <tr th:each="account : ${userAccounts}">
                                 <td th:text="${account.name}"></td>
                                 <td>
-                                    <form th:action="@{/users/{userId}/accounts/{accountId}(accountId=${account.id})}"
+                                    <form th:action="@{/users/{userId}/accounts/{accountId}(userId=${userId}, accountId=${account.id})}"
                                           method="POST">
                                         <input type="hidden" name="_method" value="DELETE"/>
-                                        <input type="hidden" name="userId" th:value="${userId}"/>
+<!--                                        <input type="hidden" name="userId" th:value="${userId}"/>-->
                                         <button class="btn btn-danger btn-sm" type="submit">Delete</button>
                                     </form>
                                 </td>

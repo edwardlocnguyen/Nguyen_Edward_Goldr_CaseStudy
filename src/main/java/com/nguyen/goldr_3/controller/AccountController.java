@@ -24,7 +24,7 @@ public class AccountController {
     }
 
     @DeleteMapping("/{accountId}")
-    public String deleteAccount(@RequestParam("userId") Integer userId, @PathVariable("accountId") Integer accountId) {
+    public String deleteAccount(@PathVariable("userId") Integer userId, @PathVariable("accountId") Integer accountId) {
         accountServices.deleteAccount(accountId);
         return "redirect:/users/" + userId + "/accounts-amounts";
     }
