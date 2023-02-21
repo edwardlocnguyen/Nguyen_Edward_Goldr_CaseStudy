@@ -24,7 +24,7 @@ public class CategoryController {
     }
 
     @DeleteMapping("/{categoryId}")
-    public String deleteCategory(@RequestParam("userId") Integer userId, @PathVariable("categoryId") Integer categoryId) {
+    public String deleteCategory(@PathVariable("userId") Integer userId, @PathVariable("categoryId") Integer categoryId) {
         categoryServices.deleteCategory(categoryId);
         return "redirect:/users/" + userId + "/categories-amounts";
     }
