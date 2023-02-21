@@ -51,4 +51,9 @@ public class EntryController {
         return "redirect:/users/" + userId + "/entries";
     }
 
+    @GetMapping("/api-page")
+    public String apiPage() {
+        return "api";
+    }
+
 }

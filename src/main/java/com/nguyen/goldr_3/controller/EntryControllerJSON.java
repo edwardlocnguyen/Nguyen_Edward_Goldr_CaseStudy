@@ -8,13 +8,19 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("users/{userId}/entries/api")
+@RequestMapping
 public class EntryControllerJSON {
 
     @Autowired
     private EntryServices entryServices;
 
-    @GetMapping
+    //    used for API page
+    @GetMapping("entries/api-data")
+    public List<Entry> getAllEntries() {
+        return entryServices.getAllEntries();
+    }
+
+    @GetMapping("users/{userId}/entries/api-data")
     public List<Entry> getEntriesByUserId(@PathVariable("userId") Integer userId) {
         return entryServices.getEntriesByUserId(userId);
     }

@@ -19,7 +19,9 @@ import java.util.Optional;
 @Service
 public class UserServices {
 
+//    constant variable
     private static final Logger logger = LoggerFactory.getLogger(UserServices.class);
+
 //    field injection to create a managed bean
     @Autowired
     private UserRepo userRepo;

@@ -14,3 +14,6 @@ assetsLink.href = "/users/" + userId + "/profile";
 
 var assetsLink = document.getElementById("signout-link");
 assetsLink.href = "/signout";
+
+var assetsLink = document.getElementById("apis-link");
+assetsLink.href = "/users/" + userId + "/entries/api-page";

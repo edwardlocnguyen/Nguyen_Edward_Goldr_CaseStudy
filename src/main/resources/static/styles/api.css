@@ -1,0 +1,24 @@
+@charset "UTF-8";
+
+body {
+    background-color: #6c6c6c;
+    color: white;
+}
+
+a {
+    text-decoration: none;
+    color: #3cb4ff;
+}
+
+#title_div {
+    display: flex;
+    justify-content: center;
+    margin: 3% auto;
+    font-family: 'Aboreto', cursive;
+    font-family: 'Abril Fatface', cursive;
+}
+
+#cards {
+    width: 60%;
+    margin: 2% auto 5% auto;
+}

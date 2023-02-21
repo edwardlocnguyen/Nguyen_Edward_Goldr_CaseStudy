@@ -9,6 +9,7 @@ import com.nguyen.goldr_3.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,6 +26,15 @@ public class EntryServices {
     private UserRepo userRepo;
     @Autowired
     private AccountRepo accountRepo;
+
+//    used for API page
+    public List<Entry> getAllEntries() {
+
+        List<Entry> entries = new ArrayList<Entry>();
+        entryRepo.findAll().forEach(entries::add);
+        return entries;
+
+    }
 
     public List<Entry> getEntriesByUserId(Integer userId) {
         return entryRepo.findByUserId(userId);
