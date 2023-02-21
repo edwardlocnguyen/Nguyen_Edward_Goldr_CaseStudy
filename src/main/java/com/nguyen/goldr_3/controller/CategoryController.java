@@ -14,8 +14,14 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/users/{userId}/categories")
 public class CategoryController {
 
+//    constant variable
+    private final CategoryServices categoryServices;
+
+//    constructor injection to create a managed bean
     @Autowired
-    private CategoryServices categoryServices;
+    public CategoryController(CategoryServices categoryServices) {
+        this.categoryServices = categoryServices;
+    }
 
     @PostMapping
     public String createCategory(@PathVariable("userId") Integer userId, @ModelAttribute("category") Category category) {
