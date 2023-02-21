@@ -91,9 +91,9 @@
                 <div class="card-body">
                     <!--                    {userId} in th:action gets its value from th:value with name="userId"-->
                     <form method="POST" th:object="${category}" id="assetForm"
-                          th:action="@{/users/{userId}/categories}">
+                          th:action="@{/users/{userId}/categories(userId=${userId})}">
                         <div class="mb-3">
-                            <input type="hidden" id="userId" name="userId" th:value="${userId}"/>
+<!--                            <input type="hidden" id="userId" name="userId" th:value="${userId}"/>-->
                             <label for="name" class="form-label">Create New Category</label>
                             <input type="text" class="form-control" id="name" name="name" th:field="*{name}"
                                    placeholder="Category Name">

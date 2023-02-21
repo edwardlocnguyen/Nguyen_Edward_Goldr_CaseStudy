@@ -18,7 +18,7 @@ public class CategoryController {
     private CategoryServices categoryServices;
 
     @PostMapping
-    public String createCategory(@RequestParam("userId") Integer userId, @ModelAttribute("category") Category category) {
+    public String createCategory(@PathVariable("userId") Integer userId, @ModelAttribute("category") Category category) {
         categoryServices.addCategory(userId, category);
         return "redirect:/users/" + userId + "/categories-amounts";
     }
