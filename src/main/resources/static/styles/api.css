@@ -10,15 +10,41 @@ a {
     color: #3cb4ff;
 }
 
+a:hover {
+    color: #66bfff;
+}
+
+p {
+    font-size: 14px;
+}
+
 #title_div {
     display: flex;
     justify-content: center;
-    margin: 3% auto;
+    margin: 5% 0% 2% 0%;
     font-family: 'Aboreto', cursive;
     font-family: 'Abril Fatface', cursive;
 }
 
-#cards {
-    width: 60%;
-    margin: 2% auto 5% auto;
+#main-card {
+    display: flex;
+    justify-content: center;
+    width: 80%;
+    margin: 0% auto 5% auto;
+}
+
+#pic-div {
+    display: flex;
+    justify-content: center;
+}
+
+#pic {
+    height: auto;
+    width: 80%;
+    margin: 1% 0% 2% 0%;
+}
+
+#trial-div {
+    display: flex;
+    justify-content: center;
 }

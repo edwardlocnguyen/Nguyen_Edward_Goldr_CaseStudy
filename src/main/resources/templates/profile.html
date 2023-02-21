@@ -16,10 +16,9 @@
     <h4>User Profile</h4>
 </div>
 <div id="page">
-    <div class="card text-bg-dark mb-3 border-light h-100"
-         style="max-width: 50%;">
-        <img src="https://www.computerhope.com/jargon/g/guest-user.png"
-             class="card-img-top" alt="profile-pic" id="profile-pic">
+    <div class="card text-bg-dark mb-3 border-light h-100" style="max-width: 50%;">
+        <img src="https://www.computerhope.com/jargon/g/guest-user.png" class="card-img-top" alt="profile-pic"
+             id="profile-pic">
         <div id=form-div>
             <form th:action="@{/users/{userId}/update(userId=${user.id})}" method="POST" th:object="${user}">
                 <input type="hidden" name="_method" value="PUT"/>

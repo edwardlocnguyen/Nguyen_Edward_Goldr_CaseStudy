@@ -13,7 +13,45 @@
 <body>
 <div th:replace="~{header :: header}"></div>
 <div id=title_div>
-    <h4>APIs Overview</h4>
+    <h4>Financial Data API</h4>
+</div>
+<div id="main-card">
+    <div class="card text-bg-dark mb-3 border-light h-100" style="max-width: 50%;">
+        <div id="pic-div">
+            <img src="https://djcs-prod.s3.amazonaws.com/public/blogs/deloitte/blogs.dir/8/files/2022/03/The-Pandemics-Impact-IMAGE-1024x546.png"
+                 class="card-img-top" alt="assets-pic" id="pic">
+        </div>
+        <div class="card-header">
+            <h4>A simple & powerful way to track consumer trends</h4>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Easy to Use</h5>
+            <p class="card-text">
+                Our APIs make getting financial data delightfully easy. Make simple calls to get
+                historical entries of anonymized user data.
+            </p>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Powerful and Flexible</h5>
+            <p class="card-text">
+                Our API can be used to deliver more complex datasets. Make calls to see trends in
+                consumer cash holdings, credit card debt, loans, home-ownership, and more!
+            </p>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Access Hundreds of Data Sets</h5>
+            <p class="card-text">
+                Our API grants access to hundreds of datasets for only $99.99/mo.
+            </p>
+        </div>
+        <div class="card-body">
+            <div id="trial-div">
+                <a th:href="@{/entries/api-data}">
+                    Start your free trial today!
+                </a>
+            </div>
+        </div>
+    </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
