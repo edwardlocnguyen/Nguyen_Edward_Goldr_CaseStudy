@@ -76,7 +76,7 @@ public class Goldr3Application {
 		accountRepo.save(account2);
 
 		Account account3 = new Account();
-		account3.setName("Student Loan");
+		account3.setName("Sallie Mae");
 		account3.setUser(user1);
 		account3.setCategory(_loans);
 		accountRepo.save(account3);
