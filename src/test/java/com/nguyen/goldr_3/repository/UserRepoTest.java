@@ -12,9 +12,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
 /*
-    testing custom query findByEmail in UserRepo
+    * testing custom query findByEmail in UserRepo
+    * Given a user email and user obj, a call to findByEmail(email) should return an Optional of the User obj
  */
 
+//  initialize and inject mocks into class
 @ExtendWith(MockitoExtension.class)
 public class UserRepoTest {
 

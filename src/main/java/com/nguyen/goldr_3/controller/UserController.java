@@ -18,7 +18,8 @@ import java.time.temporal.ChronoUnit;
 import java.util.*;
 
 /*
-    user controller includes methods to route user through user-related webpages
+    * user controller includes methods to route user through user-related webpages
+    * contains several helper functions that calculate various user statistics, such as age and filtering their latest entries by unique account
  */
 
 @Controller
@@ -46,7 +47,6 @@ public class UserController {
             return age;
         }
     }
-
 
     //    fxn to get user's latest entries per account
     public List<Map<String, Object>> getLatestEntriesPerAccount(List<Entry> userLatestEntriesPerAccount) {

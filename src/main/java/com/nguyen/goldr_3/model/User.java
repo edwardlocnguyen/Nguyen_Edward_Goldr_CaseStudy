@@ -9,7 +9,9 @@ import java.time.LocalDate;
 import java.util.List;
 
 /*
-    user model to create an account with the app
+    * user model to create an account with the app
+    * the user is the only model to have a relationship with every other model
+    * @JsonManagedReference annotation prevents infinite loops when displaying foreign model data related to the User obj
  */
 
 @Entity

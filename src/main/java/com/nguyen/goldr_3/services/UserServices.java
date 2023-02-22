@@ -13,7 +13,9 @@ import java.security.SecureRandom;
 import java.util.Optional;
 
 /*
-    user services include methods to perform CRUD operations on users
+    * user services include methods to perform CRUD operations on users
+    * a constant variable logger is used for logging errors and messages
+    * bcrypt is also used here to encode and decode passwords for new and existing users
  */
 
 @Service

@@ -15,13 +15,16 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
 /*
-    testing method getUserById in UserServices
-    also a parameterized test testing different user IDs
+    * testing method getUserById in UserServices
+    * also a parameterized test testing different user IDs
+    * testGetByUserId retrieves a user by their ID from the UserRepo, and verifies that the returned user has the expected ID
  */
 
+//  initialize and inject mocks into class
 @ExtendWith(MockitoExtension.class)
 public class UserServicesTest {
 
+//    mockito creates a mock UserRepo obj to simulate the DB
     @Mock
     private UserRepo userRepo;
 
@@ -32,6 +35,7 @@ public class UserServicesTest {
         User expectedUser = new User();
         expectedUser.setId(userId);
 
+//        tell mockito to return the expectedUser when the findById method is invoked by the mock obj userRepo
         when(userRepo.findById(expectedUser.getId())).thenReturn(Optional.of(expectedUser));
 
         UserServices userServices = new UserServices();

@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /*
-    LoginRegistration controller includes methods to route user through login and registration webpages
+    * LoginRegistration controller includes methods to route user through login and registration webpages
+    * the login and register routes invoke methods in the UserServices that use bcrypt for security
  */
 
 @Controller
