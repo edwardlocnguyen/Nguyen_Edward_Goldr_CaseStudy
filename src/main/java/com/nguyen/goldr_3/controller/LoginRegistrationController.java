@@ -1,11 +1,9 @@
 package com.nguyen.goldr_3.controller;
 
-import com.nguyen.goldr_3.model.Category;
 import com.nguyen.goldr_3.model.User;
 import com.nguyen.goldr_3.repository.UserRepo;
 import com.nguyen.goldr_3.services.UserServices;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,7 +11,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.security.SecureRandom;
+/*
+    LoginRegistration controller includes methods to route user through login and registration webpages
+ */
 
 @Controller
 public class LoginRegistrationController {

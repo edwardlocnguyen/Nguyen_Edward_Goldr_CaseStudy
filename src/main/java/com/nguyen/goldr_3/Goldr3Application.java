@@ -63,17 +63,11 @@ public class Goldr3Application {
 		Category _investments = investments.get();
 
 //		create accounts
-		Account account1 = new Account();
-		account1.setName("BOA Checking");
-		account1.setUser(user1);
-		account1.setCategory(_cash);
-		accountRepo.save(account1);
-
-		Account account2 = new Account();
-		account2.setName("PNC Savings");
-		account2.setUser(user1);
-		account2.setCategory(_cash);
-		accountRepo.save(account2);
+//		Account account2 = new Account();
+//		account2.setName("PNC Savings");
+//		account2.setUser(user1);
+//		account2.setCategory(_cash);
+//		accountRepo.save(account2);
 
 		Account account3 = new Account();
 		account3.setName("Sallie Mae");
@@ -87,6 +81,12 @@ public class Goldr3Application {
 		account4.setCategory(_investments);
 		accountRepo.save(account4);
 
+		Account account1 = new Account();
+		account1.setName("BOA Checking");
+		account1.setUser(user1);
+		account1.setCategory(_cash);
+		accountRepo.save(account1);
+
 //		create entries
 		Entry entry1 = new Entry();
 		entry1.setAmount(1000.00);
@@ -95,12 +95,12 @@ public class Goldr3Application {
 		entry1.setUser(user1);
 		entryRepo.save(entry1);
 
-		Entry entry2 = new Entry();
-		entry2.setAmount(2000.00);
-		entry2.setDate(LocalDate.now().minusDays(30));
-		entry2.setAccount(account2);
-		entry2.setUser(user1);
-		entryRepo.save(entry2);
+//		Entry entry2 = new Entry();
+//		entry2.setAmount(2000.00);
+//		entry2.setDate(LocalDate.now().minusDays(30));
+//		entry2.setAccount(account2);
+//		entry2.setUser(user1);
+//		entryRepo.save(entry2);
 
 		Entry entry3 = new Entry();
 		entry3.setAmount(-100.00);
@@ -123,12 +123,12 @@ public class Goldr3Application {
 		entry5.setUser(user1);
 		entryRepo.save(entry5);
 
-		Entry entry6 = new Entry();
-		entry6.setAmount(2345.67);
-		entry6.setDate(LocalDate.now());
-		entry6.setAccount(account2);
-		entry6.setUser(user1);
-		entryRepo.save(entry6);
+//		Entry entry6 = new Entry();
+//		entry6.setAmount(2345.67);
+//		entry6.setDate(LocalDate.now());
+//		entry6.setAccount(account2);
+//		entry6.setUser(user1);
+//		entryRepo.save(entry6);
 
 		Entry entry7 = new Entry();
 		entry7.setAmount(-50.00);

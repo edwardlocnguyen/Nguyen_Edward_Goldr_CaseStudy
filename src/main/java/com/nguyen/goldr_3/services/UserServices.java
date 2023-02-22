@@ -39,7 +39,7 @@ public class UserServices {
 
     public void addUser(User user) {
 //        using bcrypt to encode the new user's password
-        int scramble = 8;
+        int scramble = 8; // strength parameter - number of times to hash password
         BCryptPasswordEncoder bcryptEncoder = new BCryptPasswordEncoder(scramble, new SecureRandom());
         String scrambled_pw = bcryptEncoder.encode(user.getPassword());
         user.setPassword(scrambled_pw);
@@ -127,7 +127,6 @@ public class UserServices {
         return user;
     }
 
-    //    need to implement
     public void deleteUser(Integer id) {
         userRepo.deleteById(id);
     }

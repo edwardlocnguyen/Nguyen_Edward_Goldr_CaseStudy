@@ -1,6 +1,5 @@
 package com.nguyen.goldr_3.controller;
 
-import com.nguyen.goldr_3.model.Account;
 import com.nguyen.goldr_3.model.Entry;
 import com.nguyen.goldr_3.repository.AccountRepo;
 import com.nguyen.goldr_3.services.EntryServices;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
 /*
     entry controller includes methods to route user through entry-related webpages

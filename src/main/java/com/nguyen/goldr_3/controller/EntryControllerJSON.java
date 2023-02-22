@@ -7,6 +7,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
+/*
+    EntryJSON controller includes methods to route user to entry API pages with JSON data
+ */
+
 @RestController
 @RequestMapping
 public class EntryControllerJSON {

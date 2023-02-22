@@ -7,7 +7,6 @@ import com.nguyen.goldr_3.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,10 +25,6 @@ public class CategoryServices {
     public List<Category> getCategoriesByUserId(Integer userId) {
         return categoryRepo.findByUserId(userId);
     }
-
-//    public List<Category> getCategoriesByAccountId(Integer accountId) {
-//        return categoryRepo.findByAccountId(accountId);
-//    }
 
     public void addCategory(Integer userId, Category category) {
         Optional<User> user = userRepo.findById(userId);
