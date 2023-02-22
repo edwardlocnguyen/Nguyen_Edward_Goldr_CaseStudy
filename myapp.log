@@ -5644,3 +5644,6 @@ org.attoparser.ParseException: (Line = 23, Column = 60) Malformed markup: Attrib
 2023-02-21T16:32:58.151-06:00  INFO 57604 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
 2023-02-21T16:32:58.151-06:00  INFO 57604 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
 2023-02-21T16:32:58.152-06:00  INFO 57604 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2023-02-21T16:34:46.525-06:00  INFO 57604 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-02-21T16:34:46.534-06:00  INFO 57604 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-02-21T16:34:46.539-06:00  INFO 57604 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
