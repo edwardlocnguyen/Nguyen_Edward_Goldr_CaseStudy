@@ -9,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -38,8 +40,11 @@ public class EntryController {
 
 //        get user's entries
         List<Entry> userEntries = entryServices.getEntriesByUserId(userId);
+//        reverse order of list
+        List<Entry> reversedEntries = new ArrayList<>(userEntries);
+        Collections.reverse(reversedEntries);
 
-        model.addAttribute("userEntries", userEntries);
+        model.addAttribute("reversedEntries", reversedEntries);
 
         return "entry";
 

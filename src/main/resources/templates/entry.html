@@ -30,7 +30,7 @@
                     </tr>
                     </thead>
                     <tbody id="accounts-table-body">
-                    <tr th:each="entry, i : ${userEntries}">
+                    <tr th:each="entry, i : ${reversedEntries}">
                         <td th:text="${i.index + 1}"></td>
                         <td th:text="'$' + ${entry.amount}"></td>
                         <td th:text="${entry.account.name}"></td>
