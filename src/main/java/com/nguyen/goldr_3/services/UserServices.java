@@ -110,7 +110,6 @@ public class UserServices {
                 User _user = userData.get();
 
                 BCryptPasswordEncoder bcryptEncoder = new BCryptPasswordEncoder();
-
 //                bcrypt decoder
                 if (bcryptEncoder.matches(password, _user.getPassword())) {
                     user = _user;
