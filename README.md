@@ -8,7 +8,7 @@ Welcome to Goldr! This is a personal finance tracking web application that allow
 - View account balance and transaction history
 - Create and manage categories, accounts, and entries
 - User authentication and authorization via bcrypt security password hashing
-- Premium users get access to hundreds of datasets to track anonymized consumer data and analyze market trends
+- Premium users get access to hundreds of datasets to track anonymized consumer trends
 
 ## Technical Overview
 
