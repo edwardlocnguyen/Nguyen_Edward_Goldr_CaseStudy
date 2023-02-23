@@ -10,6 +10,14 @@ Welcome to Goldr! This is a personal finance tracking web application that allow
 - User authentication and authorization via bcrypt security password hashing
 - Premium users get access to hundreds of datasets to track anonymized consumer data and analyze market trends
 
+## Technical Overview
+
+- Built on the Java-based Spring Boot framework
+- Follows the Model-View-Controller (MVC) design pattern
+- Uses bcrypt to hash user password upon sign-up for security
+- Utilizes Thymeleaf for displaying dynamic data and sending form data
+- Also uses HTML, CSS, JS, and Bootstrap for frontend design assistance
+
 ## Getting Started
 
 To run the app, you will need to have Java and Maven installed on your computer. Then, follow these steps:
