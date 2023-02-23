@@ -10,6 +10,10 @@ Welcome to Goldr! This is a personal finance tracking web application that allow
 - User authentication and authorization via bcrypt password hashing
 - Premium users get access to hundreds of datasets to track anonymized consumer data and analyze market trends
 
+## Database Schema of Models and Tables
+
+![DB_Schema](https://github.com/edwardlocnguyen/Nguyen_Edward_Goldr_CaseStudy/blob/main/Schema_Diagram.png)
+
 ## Getting Started
 
 To run the app, you will need to have Java and Maven installed on your computer. Then, follow these steps:
