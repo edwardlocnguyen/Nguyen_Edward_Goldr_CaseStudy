@@ -4,7 +4,7 @@ Welcome to Goldr! This is a personal finance tracking web application that allow
 
 ## Features
 
-- Track cash holdings, investments, credit card debt, loans, and property value
+- Track cash holdings, investments, credit card debt, loans, property value, and more!
 - View account balance and transaction history
 - Create and manage categories, accounts, and entries
 - User authentication and authorization via bcrypt security password hashing
