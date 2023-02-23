@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.nguyen</groupId>
-    <artifactId>goldr_3</artifactId>
+    <artifactId>Nguyen_Edward_Goldr_CaseStudy</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>goldr_3</name>
     <description>Demo project for Spring Boot</description>
